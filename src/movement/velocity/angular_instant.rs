@@ -1,5 +1,5 @@
 use super::*;
-#[derive(Component,Default,f32Ops)]
+#[derive(Component,Default, Debug, Clone, Copy, f32Ops)]
 #[require(Transform)]
 pub struct InstantAngularVelocity(f32);
 impl InstantAngularVelocity{

@@ -1,6 +1,6 @@
 use super::*;
 
-#[derive(Component,Default,Vec2Ops)]
+#[derive(Component,Default, Debug, Clone, Copy, Vec2Ops, PartialEq)]
 #[require(Transform)]
 pub struct InstantVelocity(Vec2);
 impl InstantVelocity{
@@ -14,3 +14,8 @@ impl InstantVelocity{
     }
 }
 
+impl AddAssign<&mut InstantVelocity> for Transform{
+    fn add_assign(&mut self, rhs: &mut InstantVelocity) {
+        self.translation += rhs.consume().extend(0.0);
+    }
+}

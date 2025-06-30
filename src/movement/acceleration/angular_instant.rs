@@ -1,8 +1,8 @@
 use bevy::math::f32;
 
 use super::*;
-use crate::movement::velocity::instant::InstantAngularVelocity;
-#[derive(Component, Default, Debug, Clone, Copy,f32Ops)]
+use crate::movement::velocity::angular_instant::InstantAngularVelocity;
+#[derive(Component, Default, Debug, Clone, Copy, f32Ops)]
 #[require(InstantAngularVelocity)]
 pub struct InstantAngularAcceleration(f32);
 impl InstantAngularAcceleration{
@@ -25,11 +25,9 @@ impl InstantAngularAcceleration{
         self.0 = 0.0;
     }
 }
-
-pub fn apply_linear_acceleration(time: Res<Time>, mut query: Query<(&mut InstantAngularVelocity, &mut InstantAngularAcceleration)>){
-    for (mut vel, mut acc) in query.iter_mut(){
-        *acc *= time.delta_secs();
-        *vel += **acc;
-        acc.clear();
-    }
-}
+// Macro impls that allow f!(A,B) -> AddAssign B to A, but not vice versa. Both must impl Deref<f32>
+impl_f32_add_assign!(InstantAngularVelocity,InstantAngularAcceleration);
+impl_f32_add_assign!(InstantAngularAcceleration,InstantAngularAcceleration);
+// Macro impls that allow f!(A,B) -> Add B to A, but not vice versa. Both must impl Deref<f32>
+impl_f32_add!(InstantAngularVelocity,InstantAngularAcceleration,InstantAngularVelocity);
+impl_f32_add!(InstantAngularVelocity,InstantAngularVelocity,InstantAngularVelocity);

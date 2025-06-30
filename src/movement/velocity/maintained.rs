@@ -1,3 +1,4 @@
+
 use super::*;
 #[derive(Component,Default,Vec2Ops)]
 #[require(Transform)]
@@ -8,5 +9,11 @@ impl MaintainedVelocity{
     }
     pub fn get(&mut self)->Vec2{
         self.0
+    }
+}
+
+impl AddAssign<&mut MaintainedVelocity> for Transform{
+    fn add_assign(&mut self, rhs: &mut MaintainedVelocity) {
+        self.translation += rhs.get().extend(0.0);
     }
 }

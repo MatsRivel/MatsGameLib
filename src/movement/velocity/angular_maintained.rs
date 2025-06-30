@@ -1,6 +1,6 @@
 use super::*;
 
-#[derive(Component,Default,f32Ops)]
+#[derive(Component,Default, Debug, Clone, Copy, f32Ops)]
 #[require(Transform)]
 pub struct MaintainedAngularVelocity(f32);
 impl MaintainedAngularVelocity{
