@@ -1,7 +1,6 @@
 use super::*;
-use crate::movement::velocity::instant::InstantVelocity;
 #[derive(Component, Default, Debug, Clone, Copy, Vec2Ops, PartialEq)]
-#[require(InstantVelocity)]
+#[require(MaintainedVelocity)]
 pub struct InstantAcceleration(Vec2);
 impl InstantAcceleration{
     pub fn new(acceleration: Vec2)->Self{
@@ -25,44 +24,30 @@ impl InstantAcceleration{
     }
 }
 // Macro impls that allow f!(A,B) -> AddAssign B to A, but not vice versa. Both must impl Deref<Vec2>
-impl_vec2_add_assign!(InstantVelocity,InstantAcceleration);
-impl_vec2_add_assign!(InstantVelocity,InstantVelocity);
+impl_vec2_add_assign!(MaintainedVelocity,InstantAcceleration);
+
 // Macro impls that allow f!(A,B) -> Add B to A, but not vice versa. Both must impl Deref<Vec2>
-impl_vec2_add!(InstantVelocity,InstantAcceleration,InstantVelocity);
-impl_vec2_add!(InstantVelocity,InstantVelocity,InstantVelocity);
+impl_vec2_add!(MaintainedVelocity,InstantAcceleration,MaintainedVelocity);
+
 
 
 #[cfg(test)]
 pub mod tests{
     use super::*;
     #[test]
-    pub fn check_add_assign_1(){
-        let mut a = InstantVelocity::new(Vec2::ZERO);
+    pub fn check_add_assign(){
+        let mut a = MaintainedVelocity::new(Vec2::ZERO);
         let b = InstantAcceleration::new(Vec2::ONE);
-        let expected = InstantVelocity::new(Vec2::ONE);
+        let expected = MaintainedVelocity::new(Vec2::ONE);
         a += b;
         assert_eq!(expected,a)
     }
+
     #[test]
-    pub fn check_add_assign_2(){
-        let mut a = InstantVelocity::new(Vec2::ZERO);
-        let b = InstantVelocity::new(Vec2::ONE);
-        let expected = InstantVelocity::new(Vec2::ONE);
-        a += b;
-        assert_eq!(expected,a)
-    }
-    #[test]
-    pub fn check_add_1(){
-        let a = InstantVelocity::new(Vec2::ZERO);
+    pub fn check_add(){
+        let a = MaintainedVelocity::new(Vec2::ZERO);
         let b = InstantAcceleration::new(Vec2::ONE);
-        let expected = InstantVelocity::new(Vec2::ONE);
-        assert_eq!(expected,a+b)
-    }
-    #[test]
-    pub fn check_add_2(){
-        let a = InstantVelocity::new(Vec2::ZERO);
-        let b = InstantVelocity::new(Vec2::ONE);
-        let expected = InstantVelocity::new(Vec2::ONE);
+        let expected = MaintainedVelocity::new(Vec2::ONE);
         assert_eq!(expected,a+b)
     }
 }
