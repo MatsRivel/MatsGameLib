@@ -1,4 +1,4 @@
-use crate::movement::instant_velocity::structure::InstantVelocity;
+use crate::movement::velocity::instant::InstantVelocity;
 use super::*;
 #[derive(Component, Default)]
 #[require(Object, InstantVelocity)]
