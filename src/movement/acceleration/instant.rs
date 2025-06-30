@@ -50,4 +50,5 @@ pub mod tests{
         let expected = MaintainedVelocity::new(Vec2::ONE);
         assert_eq!(expected,a+b)
     }
+
 }

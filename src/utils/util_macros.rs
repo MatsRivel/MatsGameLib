@@ -1,4 +1,3 @@
-use super::*;
 #[macro_export]
 macro_rules! impl_vec2_add_assign {
     ($Lhs:ty, $Rhs:ty) => {

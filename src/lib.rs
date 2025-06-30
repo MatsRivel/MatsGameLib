@@ -1,6 +1,6 @@
 #![feature(trivial_bounds)]
 use bevy::prelude::*;
-use std::ops::{Add,AddAssign,Mul,MulAssign,Sub,SubAssign, Deref, DerefMut};
+use std::ops::{Add,AddAssign,Mul,MulAssign,Sub,SubAssign, Deref};
 use ops_derive::*;
 pub mod entities;
 pub mod camera;

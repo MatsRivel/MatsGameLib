@@ -1,5 +1,5 @@
 use super::*;
-use crate::movement::velocity::{angular_instant::InstantAngularVelocity, instant::InstantVelocity, maintained::MaintainedVelocity};
+pub use crate::movement::velocity::{maintained::MaintainedVelocity,instant::InstantVelocity};
 pub mod instant;
 pub mod angular_instant;
 pub mod application;

@@ -1,6 +1,7 @@
 use crate::movement::acceleration::angular_instant::InstantAngularAcceleration;
 use crate::movement::velocity::angular_maintained::MaintainedAngularVelocity;
 use crate::movement::acceleration::instant::InstantAcceleration;
+use crate::movement::velocity::maintained::MaintainedVelocity;
 use super::*;
 
 pub fn apply_angular_acceleration(time: Res<Time>, mut query: Query<(&mut MaintainedAngularVelocity, &mut InstantAngularAcceleration)>){
