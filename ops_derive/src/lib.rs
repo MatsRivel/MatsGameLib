@@ -65,3 +65,68 @@ pub fn derive_vec2_ops(input: TokenStream) -> TokenStream {
 
     TokenStream::from(expanded)
 }
+
+
+#[proc_macro_derive(f32Ops)]
+pub fn derive_f32_ops(input: TokenStream) -> TokenStream {
+    let input = parse_macro_input!(input as DeriveInput);
+
+    let name = &input.ident;
+
+    // This assumes single unnamed field like: struct Foo(f32);
+    let expanded = quote! {
+        impl Add<f32> for #name{
+            type Output = Self;
+            fn add(self, rhs: f32) -> Self::Output {
+                Self(self.0 + rhs)
+            }
+        }
+        impl AddAssign<f32> for #name{
+            fn add_assign(&mut self, rhs: f32) {
+                self.0 += rhs
+            }
+        }
+        impl Sub<f32> for #name{
+            type Output = Self;
+            fn sub(self, rhs: f32) -> Self::Output {
+                Self(self.0 - rhs)
+            }
+        }
+        impl SubAssign<f32> for #name{
+            fn sub_assign(&mut self, rhs: f32) {
+                self.0 -= rhs
+            }
+        }
+        impl Mul<f32> for #name{
+            type Output = Self;
+            fn mul(self, rhs: f32) -> Self::Output {
+                Self(self.0 * rhs)
+            }
+        }
+        impl MulAssign<f32> for #name{
+            fn mul_assign(&mut self, rhs: f32){
+                self.0 *= rhs
+            }
+        }
+        impl Mul<f32> for #name{
+            type Output = Self;
+            fn mul(self, rhs: f32) -> Self::Output {
+                Self(self.0 * rhs)
+            }
+        }
+        impl MulAssign<f32> for #name{
+            fn mul_assign(&mut self, rhs: f32){
+                self.0 *= rhs
+            }
+        }
+        impl Deref for #name {
+            type Target = f32;
+
+            fn deref(&self) -> &Self::Target {
+                &self.0
+            }
+        }
+    };
+
+    TokenStream::from(expanded)
+}
