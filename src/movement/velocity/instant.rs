@@ -1,8 +1,6 @@
 use super::*;
-use crate::utils::vec2_derivations::vec2_wrapper;
 
-vec2_wrapper!(InstandVelocity);
-#[derive(Component,Default)]
+#[derive(Component,Default,Vec2Ops)]
 #[require(Transform)]
 pub struct InstantVelocity(Vec2);
 impl InstantVelocity{

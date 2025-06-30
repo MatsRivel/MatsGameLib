@@ -1,9 +1,6 @@
-use crate::movement::velocity::instant::InstantVelocity;
-use crate::utils::vec2_derivations::vec2_wrapper;
 use super::*;
-
-vec2_wrapper!(InstantAcceleration);
-#[derive(Component, Default, Debug, Clone, Copy)]
+use crate::movement::velocity::instant::InstantVelocity;
+#[derive(Component, Default, Debug, Clone, Copy,Vec2Ops)]
 #[require(InstantVelocity)]
 pub struct InstantAcceleration(Vec2);
 impl InstantAcceleration{
@@ -28,10 +25,10 @@ impl InstantAcceleration{
     }
 }
 
-pub fn apply_linear_acceleration(time: Res<Time>, mut query: Query<(&mut InstantAcceleration, &mut InstantAcceleration)>){
+pub fn apply_linear_acceleration(time: Res<Time>, mut query: Query<(&mut InstantVelocity, &mut InstantAcceleration)>){
     for (mut vel, mut acc) in query.iter_mut(){
         *acc *= time.delta_secs();
-        *vel += *acc;
+        *vel += **acc;
         acc.clear();
     }
 }
