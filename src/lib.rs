@@ -6,3 +6,4 @@ pub mod entities;
 pub mod camera;
 pub mod movement;
 pub mod utils;
+pub mod destruction;

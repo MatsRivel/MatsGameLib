@@ -38,7 +38,7 @@ macro_rules! impl_f32_add_assign {
             $Rhs: Deref<Target = f32>,
         {
             fn add_assign(&mut self, rhs: $Rhs) {
-                *self = *self + *rhs;
+                *self = *self + rhs;
             }
         }
     };

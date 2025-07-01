@@ -1,0 +1,11 @@
+use super::*;
+pub mod health;
+pub mod current_health;
+pub mod damage;
+pub mod healing;
+pub mod max_health;
+use health::*;
+use current_health::*;
+use healing::*;
+use max_health::*;
+use damage::*;
