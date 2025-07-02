@@ -87,6 +87,25 @@ pub fn derive_vec2_ops(input: TokenStream) -> TokenStream {
 }
 
 
+#[proc_macro_derive(f32Deref)]
+pub fn derive_f32_deref(input: TokenStream) -> TokenStream {
+    let input = parse_macro_input!(input as DeriveInput);
+
+    let name = &input.ident;
+
+    // This assumes single unnamed field like: struct Foo(f32);
+    let expanded = quote! {
+
+        impl Deref for #name {
+            type Target = f32;
+
+            fn deref(&self) -> &Self::Target {
+                &self.0
+            }
+        }
+    };
+    TokenStream::from(expanded)
+}
 #[proc_macro_derive(f32Ops)]
 pub fn derive_f32_ops(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);

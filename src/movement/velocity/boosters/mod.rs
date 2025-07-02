@@ -1,2 +1,3 @@
 use super::*;
-pub mod instant_booster;
+pub mod velocity_booster;
+pub mod acceleration_booster;

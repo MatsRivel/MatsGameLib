@@ -64,6 +64,7 @@ pub mod health_tests{
             let damage = Damage::new(1.0);
             let hp_after_dmg = hp + damage;
             let expected_hp: f32 = 99.0;
+            
             assert_eq!(expected_hp, *hp_after_dmg.current_health )
         }
         #[test]
@@ -72,6 +73,7 @@ pub mod health_tests{
             let damage = Damage::new(1.0);
             hp += damage;
             let expected_hp: f32 = 99.0;
+
             assert_eq!(expected_hp, *hp.current_health )
         }
     }
@@ -83,6 +85,7 @@ pub mod health_tests{
             let heal = Healing::new(1.0);
             let hp_after_dmg = hp + heal;
             let expected_hp: f32 = 100.0;
+
             assert_eq!(expected_hp, *hp_after_dmg.current_health )
         }
         #[test]
@@ -91,6 +94,7 @@ pub mod health_tests{
             let healing = Healing::new(1.0);
             hp += healing;
             let expected_hp: f32 = 100.0;
+
             assert_eq!(expected_hp, *hp.current_health )
         }
         #[test]

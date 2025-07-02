@@ -19,6 +19,7 @@ impl AddAssign<&mut InstantVelocity> for Transform{
         self.translation += rhs.consume().extend(0.0);
     }
 }
+
 impl Add<&mut InstantVelocity> for Transform{
     type Output = Transform;
     
@@ -27,6 +28,7 @@ impl Add<&mut InstantVelocity> for Transform{
         self
     }
 }
+
 impl_vec2_add_assign!(InstantVelocity,InstantVelocity);
 impl_vec2_add!(InstantVelocity,InstantVelocity,InstantVelocity);
 
