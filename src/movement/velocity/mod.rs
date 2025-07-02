@@ -4,3 +4,4 @@ pub mod instant;
 pub mod maintained;
 pub mod angular_instant;
 pub mod angular_maintained;
+pub mod boosters;

@@ -15,8 +15,9 @@ impl InstantAngularVelocity{
 
 impl_f32_add_assign!(InstantAngularVelocity,InstantAngularVelocity);
 impl_f32_add!(InstantAngularVelocity,InstantAngularVelocity,InstantAngularVelocity);
+
 #[cfg(test)]
-pub mod tests{
+pub mod instant_angular_acceleration_tests{
     use super::*;
     #[test]
     pub fn check_add_assign(){

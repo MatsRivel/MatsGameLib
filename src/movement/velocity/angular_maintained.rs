@@ -16,7 +16,7 @@ impl MaintainedAngularVelocity{
 impl_f32_add_assign!(MaintainedAngularVelocity,MaintainedAngularVelocity);
 impl_f32_add!(MaintainedAngularVelocity,MaintainedAngularVelocity,MaintainedAngularVelocity);
 #[cfg(test)]
-pub mod tests{
+pub mod maintained_angular_acceleration_tests{
     use super::*;
     #[test]
     pub fn check_add_assign(){

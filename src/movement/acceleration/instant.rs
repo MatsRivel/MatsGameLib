@@ -25,14 +25,10 @@ impl InstantAcceleration{
 }
 // Macro impls that allow f!(A,B) -> AddAssign B to A, but not vice versa. Both must impl Deref<Vec2>
 impl_vec2_add_assign!(MaintainedVelocity,InstantAcceleration);
-
-// Macro impls that allow f!(A,B) -> Add B to A, but not vice versa. Both must impl Deref<Vec2>
 impl_vec2_add!(MaintainedVelocity,InstantAcceleration,MaintainedVelocity);
 
-
-
 #[cfg(test)]
-pub mod tests{
+pub mod instant_acceleration_tests{
     use super::*;
     #[test]
     pub fn check_add_assign(){

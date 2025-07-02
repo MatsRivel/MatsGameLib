@@ -29,5 +29,17 @@ impl From<f32> for CurrentHealth{
 }
 impl_f32_add_assign!(CurrentHealth,Healing);
 impl_f32_add!(CurrentHealth,Healing,CurrentHealth);
-impl_f32_add_assign!(CurrentHealth,Damage);
-impl_f32_add!(CurrentHealth,Damage,CurrentHealth);
+
+impl Add<Damage> for CurrentHealth{
+    type Output = CurrentHealth;
+
+    fn add(mut self, rhs: Damage) -> Self::Output {
+        self += rhs;
+        self
+    }
+}
+impl AddAssign<Damage> for CurrentHealth{
+    fn add_assign(&mut self, rhs: Damage) {
+        self.0 -= rhs.consume();
+    }
+}

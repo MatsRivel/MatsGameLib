@@ -31,7 +31,7 @@ impl_vec2_add_assign!(InstantVelocity,InstantVelocity);
 impl_vec2_add!(InstantVelocity,InstantVelocity,InstantVelocity);
 
 #[cfg(test)]
-pub mod tests{
+pub mod instant_velocity_tests{
     use super::*;
     #[test]
     pub fn check_add_assign_self(){

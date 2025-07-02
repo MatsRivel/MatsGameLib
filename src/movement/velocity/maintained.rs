@@ -22,7 +22,7 @@ impl_vec2_add_assign!(MaintainedVelocity,MaintainedVelocity);
 impl_vec2_add!(MaintainedVelocity,MaintainedVelocity,MaintainedVelocity);
 
 #[cfg(test)]
-pub mod tests{
+pub mod maintainted_velocity_tests{
     use super::*;
     #[test]
     pub fn check_add_assign(){
