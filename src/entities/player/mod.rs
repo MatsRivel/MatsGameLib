@@ -116,6 +116,33 @@ impl Plugin for PlayerPlugin {
         ));
     }
 }
+pub fn build_spawn_player_function(asset_path: String)->impl Fn(Commands, Res<AssetServer>) + 'static{
+    move | mut commands, asset_server|{
+        let image = asset_server.load(&asset_path);
+        let mut sprite =     Sprite::from_image(image);
+        sprite.custom_size = Some(Vec2::splat(128.0));
+        let player_entity = commands.spawn((
+            PlayerTag,
+            sprite,
+            // InstantVelocity::default(),
+            InstantAngularVelocity::default(),
+            // InstantAcceleration::default(),
+            // InstantAngularAcceleration::default(),
+        )).id();
+        println!("Player Entity: {player_entity:?}");
+        
+        let image = asset_server.load(&asset_path);
+        let mut sprite =     Sprite::from_image(image);
+        sprite.custom_size = Some(Vec2::splat(128.0));
+        let dummy_entity = commands.spawn((
+            Transform::from_translation(Vec3::new(50.0, 50.0, 0.0)),
+            sprite,
+
+        )).id();
+        println!("Dummy Entity: {dummy_entity:?}");
+    }
+}   
+
 pub fn spawn_player(mut commands: Commands, asset_server: Res<AssetServer>){
     let asset_path = r"sprites\Ships\ship-a\ship-a2.png";
     let image = asset_server.load(asset_path);
